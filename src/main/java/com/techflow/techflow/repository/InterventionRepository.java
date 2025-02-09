@@ -11,7 +11,6 @@ public interface InterventionRepository extends JpaRepository<Intervention, Inte
 
     Optional<Intervention> findOneByUuid(String uuid);
 
+    @SuppressWarnings({ "null", "unchecked" })
     Intervention save(Intervention intervention);
-
-    void deleteByUuid(String uuid);
 }

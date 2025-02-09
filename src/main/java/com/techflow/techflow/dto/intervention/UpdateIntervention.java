@@ -3,6 +3,7 @@ package com.techflow.techflow.dto.intervention;
 import com.techflow.techflow.constant.PrioriteIntervention;
 import com.techflow.techflow.constant.StatutIntervention;
 import com.techflow.techflow.constant.TypeIntervention;
+import com.techflow.techflow.model.Utilisateur;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -10,16 +11,18 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Setter
 @Getter
-public class CreateIntervention {
-    private String description;
+@Setter
+public class UpdateIntervention {
+
+    @Getter
+    private final String description;
 
     @NotNull
-    private TypeIntervention typeIntervention;
+    private final TypeIntervention typeIntervention;
 
     @NotNull
-    private LocalDateTime date;
+    private final LocalDateTime date;
 
     @NotNull
     @Min(value = 0, message = "La durée de l'intervention doit être supérieure à zéro")
@@ -29,7 +32,7 @@ public class CreateIntervention {
     private StatutIntervention statutIntervention;
 
     @NotNull
-    private String utilisateurId;
+    private Utilisateur utilisateurAssigne;
 
     @NotNull
     private PrioriteIntervention prioriteIntervention;
@@ -38,15 +41,16 @@ public class CreateIntervention {
     @Min(value = 0, message = "Le cout de l'intervention doit être supérieure à zéro")
     private Float cout;
 
-    public CreateIntervention(String description, TypeIntervention typeIntervention, LocalDateTime date, Integer duree, StatutIntervention statutIntervention, String utilisateurId, PrioriteIntervention prioriteIntervention, Float cout) {
+    public UpdateIntervention(String description, TypeIntervention typeIntervention, LocalDateTime date,
+                              Integer duree, StatutIntervention statutIntervention, PrioriteIntervention prioriteIntervention,
+                              float cout, Utilisateur utilisateurAssigne) {
         this.description = description;
         this.typeIntervention = typeIntervention;
-        this.date = LocalDateTime.now();
+        this.date = date;
         this.duree = duree;
         this.statutIntervention = statutIntervention;
-        this.utilisateurId = utilisateurId;
         this.prioriteIntervention = prioriteIntervention;
         this.cout = cout;
+        this.utilisateurAssigne = utilisateurAssigne;
     }
-
 }
