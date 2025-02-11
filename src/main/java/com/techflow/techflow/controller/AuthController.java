@@ -1,8 +1,8 @@
 package com.techflow.techflow.controller;
 
-import com.techflow.techflow.dto.LoginDto;
-import com.techflow.techflow.dto.LoginResponse;
-import com.techflow.techflow.dto.RegisterDto;
+import com.techflow.techflow.dto.request.LoginDto;
+import com.techflow.techflow.dto.response.LoginResponse;
+import com.techflow.techflow.dto.request.RegisterDto;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.security.JwtService;
 import com.techflow.techflow.service.AuthService;

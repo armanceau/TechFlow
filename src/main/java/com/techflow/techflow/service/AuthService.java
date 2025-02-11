@@ -1,8 +1,8 @@
 package com.techflow.techflow.service;
 
 import com.techflow.techflow.constant.Role;
-import com.techflow.techflow.dto.LoginDto;
-import com.techflow.techflow.dto.RegisterDto;
+import com.techflow.techflow.dto.request.LoginDto;
+import com.techflow.techflow.dto.request.RegisterDto;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.repository.UtilisateurRepository;
 import org.springframework.security.authentication.AuthenticationManager;
