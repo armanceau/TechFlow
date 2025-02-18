@@ -48,8 +48,8 @@ Hébergement	AWS / DigitalOcean
 ### 2️⃣ Cloner le dépôt
 
 ```bash
-git clone https://github.com/armanceau/taskmanager.git
-cd taskmanager
+git clone https://github.com/armanceau/techflow.git
+cd techflow
 ```
 
 ### 3️⃣ Installation des dépendances
