@@ -45,6 +45,13 @@ public class Utilisateur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public Utilisateur(String fullName, String email, String password, Role role) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<Role> roles = Set.of(role);
