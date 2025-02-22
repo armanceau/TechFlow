@@ -1,4 +1,4 @@
-package com.techflow.techflow.repository;
+package com.techflow.techflow.domain.repository;
 
 import com.techflow.techflow.model.Intervention;
 import org.springframework.data.jpa.repository.JpaRepository;

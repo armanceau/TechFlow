@@ -1,11 +1,11 @@
-package com.techflow.techflow.controller;
+package com.techflow.techflow.web.auth;
 
-import com.techflow.techflow.dto.LoginDto;
-import com.techflow.techflow.dto.LoginResponse;
-import com.techflow.techflow.dto.RegisterDto;
+import com.techflow.techflow.application.dto.LoginDto;
+import com.techflow.techflow.application.dto.LoginResponse;
+import com.techflow.techflow.application.dto.RegisterDto;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.security.JwtService;
-import com.techflow.techflow.service.AuthService;
+import com.techflow.techflow.application.auth.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

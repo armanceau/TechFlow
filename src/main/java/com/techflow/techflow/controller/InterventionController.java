@@ -1,7 +1,7 @@
 package com.techflow.techflow.controller;
 
-import com.techflow.techflow.dto.intervention.CreateIntervention;
-import com.techflow.techflow.dto.intervention.UpdateIntervention;
+import com.techflow.techflow.application.dto.intervention.CreateIntervention;
+import com.techflow.techflow.application.dto.intervention.UpdateIntervention;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.service.InterventionService;

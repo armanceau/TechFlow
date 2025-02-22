@@ -1,4 +1,4 @@
-package com.techflow.techflow.dto.intervention;
+package com.techflow.techflow.application.dto.intervention;
 
 import com.techflow.techflow.constant.PrioriteIntervention;
 import com.techflow.techflow.constant.StatutIntervention;

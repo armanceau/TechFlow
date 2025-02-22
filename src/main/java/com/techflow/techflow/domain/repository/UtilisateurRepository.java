@@ -1,4 +1,4 @@
-package com.techflow.techflow.repository;
+package com.techflow.techflow.domain.repository;
 
 import com.techflow.techflow.model.Utilisateur;
 import org.springframework.data.repository.CrudRepository;
@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface UtilisateurRepository extends CrudRepository<Utilisateur, String> {
     Optional<Utilisateur> findByEmail(String email);
-
-    Optional<Utilisateur> findById(String id);
+    Utilisateur save(Utilisateur utilisateur);
 }

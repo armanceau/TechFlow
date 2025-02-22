@@ -1,6 +1,6 @@
 package com.techflow.techflow.security;
 
-import com.techflow.techflow.repository.UtilisateurRepository;
+import com.techflow.techflow.domain.repository.UtilisateurRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

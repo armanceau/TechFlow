@@ -1,4 +1,4 @@
-package com.techflow.techflow.dto;
+package com.techflow.techflow.application.dto;
 
 public class LoginDto {
     private String email;

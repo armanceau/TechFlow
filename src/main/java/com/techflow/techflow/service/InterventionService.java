@@ -1,11 +1,11 @@
 package com.techflow.techflow.service;
 
-import com.techflow.techflow.dto.intervention.CreateIntervention;
-import com.techflow.techflow.dto.intervention.UpdateIntervention;
+import com.techflow.techflow.application.dto.intervention.CreateIntervention;
+import com.techflow.techflow.application.dto.intervention.UpdateIntervention;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
-import com.techflow.techflow.repository.InterventionRepository;
-import com.techflow.techflow.repository.UtilisateurRepository;
+import com.techflow.techflow.domain.repository.InterventionRepository;
+import com.techflow.techflow.domain.repository.UtilisateurRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

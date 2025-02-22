@@ -1,10 +1,10 @@
-package com.techflow.techflow.service;
+package com.techflow.techflow.application.auth;
 
 import com.techflow.techflow.constant.Role;
-import com.techflow.techflow.dto.LoginDto;
-import com.techflow.techflow.dto.RegisterDto;
+import com.techflow.techflow.application.dto.LoginDto;
+import com.techflow.techflow.application.dto.RegisterDto;
 import com.techflow.techflow.model.Utilisateur;
-import com.techflow.techflow.repository.UtilisateurRepository;
+import com.techflow.techflow.domain.repository.UtilisateurRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,13 +29,19 @@ public class AuthService {
     }
 
     public Utilisateur signup(RegisterDto input) {
-        Utilisateur user = new Utilisateur();
-        user.setFullName(input.getFullName());
-        user.setEmail(input.getEmail());
-        user.setRole(Role.USER);
-        user.setPassword(passwordEncoder.encode(input.getPassword()));
 
-        return utilisateurRepository.save(user);
+        if(utilisateurRepository.findByEmail(input.getEmail()).isPresent()){
+            throw new RuntimeException("Email déjà utilisé.");
+        }
+
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setNom(input.getNom());
+        utilisateur.setPrenom(input.getPrenom());
+        utilisateur.setEmail(input.getEmail());
+        utilisateur.setRole(Role.USER);
+        utilisateur.setPassword(passwordEncoder.encode(input.getPassword()));
+
+        return utilisateurRepository.save(utilisateur);
     }
 
     public Utilisateur authenticate(LoginDto input) {

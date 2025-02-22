@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,18 +21,25 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 public class Utilisateur implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     private String id;
 
     @Column(nullable = false)
-    private String fullName;
+    @Length(min = 1, max = 30, message="Le nom doit comporter entre 1 et 30 caractères.")
+    private String nom;
+
+    @Column(nullable = false)
+    @Length(min = 1, max = 30, message="Le prénom doit comporter entre 1 et 30 caractères.")
+    private String prenom;
 
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
     @Column(nullable = false)
+    @Length(min = 8, max = 16, message = "Le mot de passe devrait comporter entre 8 et 16 caractères.")
     private String password;
 
     @CreationTimestamp
@@ -45,8 +53,11 @@ public class Utilisateur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Utilisateur(String fullName, String email, String password, Role role) {
-        this.fullName = fullName;
+    private boolean estActif = true;
+
+    public Utilisateur(String nom, String prenom, String email, String password, Role role) {
+        this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -68,10 +79,6 @@ public class Utilisateur implements UserDetails {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -89,6 +96,6 @@ public class Utilisateur implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return estActif;
     }
 }

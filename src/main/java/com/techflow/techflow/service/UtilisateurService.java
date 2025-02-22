@@ -1,7 +1,7 @@
 package com.techflow.techflow.service;
 
 import com.techflow.techflow.model.Utilisateur;
-import com.techflow.techflow.repository.UtilisateurRepository;
+import com.techflow.techflow.domain.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
