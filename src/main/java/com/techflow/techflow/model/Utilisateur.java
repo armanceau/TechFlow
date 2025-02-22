@@ -26,7 +26,12 @@ public class Utilisateur implements UserDetails {
     private String id;
 
     @Column(nullable = false)
-    private String fullName;
+    private String nom;
+
+    //TODO ajouter prenom au constructeur et partout, ajouter les conditions min max ...
+
+    @Column(nullable = false)
+    private String prenom;
 
     @Column(unique = true, length = 100, nullable = false)
     private String email;
@@ -45,8 +50,8 @@ public class Utilisateur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Utilisateur(String fullName, String email, String password, Role role) {
-        this.fullName = fullName;
+    public Utilisateur(String nom, String email, String password, Role role) {
+        this.nom = nom;
         this.email = email;
         this.password = password;
         this.role = role;

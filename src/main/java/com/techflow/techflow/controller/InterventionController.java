@@ -1,7 +1,6 @@
 package com.techflow.techflow.controller;
 
-import com.techflow.techflow.dto.intervention.CreateIntervention;
-import com.techflow.techflow.dto.intervention.UpdateIntervention;
+import com.techflow.techflow.dto.InterventionDto;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.service.InterventionService;
@@ -44,7 +43,7 @@ public class InterventionController {
     }
 
     @PostMapping
-    public ResponseEntity<Intervention> save(@Valid @RequestBody CreateIntervention interventionDto) {
+    public ResponseEntity<Intervention> save(@Valid @RequestBody InterventionDto interventionDto) {
         Utilisateur utilisateur = utilisateurService.findById(interventionDto.getUtilisateurId());
         if (utilisateur == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +65,7 @@ public class InterventionController {
     @PutMapping("/{uuid}")
     public ResponseEntity<?> mettreAJourTotalement(
             @PathVariable String uuid,
-            @RequestBody UpdateIntervention intervention) {
+            @RequestBody InterventionDto intervention) {
         boolean isUpdated = service.update(uuid, intervention);
         if (isUpdated) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
