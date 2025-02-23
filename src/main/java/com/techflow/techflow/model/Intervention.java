@@ -53,7 +53,7 @@ public class Intervention {
     public Intervention(String description, TypeIntervention typeIntervention, LocalDateTime date, Integer duree, StatutIntervention statutIntervention, Utilisateur utilisateurAssigne, PrioriteIntervention priorite, float cout) {
         this.description = description;
         this.typeIntervention = typeIntervention;
-        this.date = LocalDateTime.now();
+        this.date = date;
         this.duree = duree;
         this.statutIntervention = statutIntervention;
         this.utilisateurAssigne = utilisateurAssigne;

@@ -17,8 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.techflow.techflow.util.InterventionTestBuilder.uneIntervention;
-import static com.techflow.techflow.util.UtilisateurTestBuidler.unUtilisateur;
+import static com.techflow.techflow.util.model.InterventionTestBuilder.uneIntervention;
+import static com.techflow.techflow.util.model.UtilisateurTestBuidler.unUtilisateur;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

@@ -13,8 +13,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import static com.techflow.techflow.util.UtilisateurTestBuidler.unUtilisateur;
-import static com.techflow.techflow.util.dto.RegisterDto.RegisterDtoTestBuidler.unRegisterDto;
+import static com.techflow.techflow.util.model.UtilisateurTestBuidler.unUtilisateur;
+import static com.techflow.techflow.util.dto.RegisterDtoTestBuidler.unRegisterDto;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 

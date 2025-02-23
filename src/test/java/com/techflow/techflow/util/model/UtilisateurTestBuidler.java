@@ -1,4 +1,4 @@
-package com.techflow.techflow.util;
+package com.techflow.techflow.util.model;
 
 import com.techflow.techflow.constant.Role;
 import com.techflow.techflow.model.Utilisateur;

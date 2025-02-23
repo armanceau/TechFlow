@@ -1,4 +1,4 @@
-package com.techflow.techflow.util.dto.RegisterDto;
+package com.techflow.techflow.util.dto;
 
 import com.techflow.techflow.dto.RegisterDto;
 

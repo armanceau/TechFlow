@@ -41,7 +41,7 @@ public class InterventionDto {
     public InterventionDto(String description, TypeIntervention typeIntervention, LocalDateTime date, Integer duree, StatutIntervention statutIntervention, String utilisateurId, PrioriteIntervention prioriteIntervention, Float cout) {
         this.description = description;
         this.typeIntervention = typeIntervention;
-        this.date = LocalDateTime.now();
+        this.date = date;
         this.duree = duree;
         this.statutIntervention = statutIntervention;
         this.utilisateurId = utilisateurId;

@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Arrays;
 
-import static com.techflow.techflow.util.UtilisateurTestBuidler.unUtilisateur;
+import static com.techflow.techflow.util.model.UtilisateurTestBuidler.unUtilisateur;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
