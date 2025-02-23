@@ -30,9 +30,11 @@ public class AuthService {
 
     public Utilisateur signup(RegisterDto input) {
         Utilisateur user = new Utilisateur();
-        user.setFullName(input.getFullName());
+        user.setNom(input.getNom());
+        user.setPrenom(input.getPrenom());
         user.setEmail(input.getEmail());
         user.setRole(Role.USER);
+        user.setUsername(input.getPrenom().toLowerCase().charAt(0)+input.getNom().toLowerCase());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
 
         return utilisateurRepository.save(user);

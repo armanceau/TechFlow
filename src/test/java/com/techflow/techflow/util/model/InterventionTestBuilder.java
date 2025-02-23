@@ -1,13 +1,14 @@
-package com.techflow.techflow.util;
+package com.techflow.techflow.util.model;
 
 import com.techflow.techflow.constant.PrioriteIntervention;
-import com.techflow.techflow.constant.Role;
 import com.techflow.techflow.constant.StatutIntervention;
 import com.techflow.techflow.constant.TypeIntervention;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
 
 import java.time.LocalDateTime;
+
+import static com.techflow.techflow.util.model.UtilisateurTestBuidler.unUtilisateur;
 
 public class InterventionTestBuilder {
 
@@ -16,8 +17,7 @@ public class InterventionTestBuilder {
     private LocalDateTime date = LocalDateTime.now();
     private Integer duree = 20;
     private StatutIntervention statutIntervention = StatutIntervention.EN_COURS;
-    private Utilisateur utilisateurCree = new Utilisateur("Doe", "johndoe@exemple.fr", "p@ssword0", Role.USER);
-    private String utilisateurID = utilisateurCree.getId();
+    private Utilisateur utilisateurCree = unUtilisateur().build();
     private PrioriteIntervention prioriteIntervention = PrioriteIntervention.HAUTE;
     private Float cout = 50.0f;
 
@@ -51,7 +51,7 @@ public class InterventionTestBuilder {
     }
 
     public InterventionTestBuilder avecUtilisateur(Utilisateur utilisateur) {
-        this.utilisateurID = utilisateur.getId();
+        this.utilisateurCree = utilisateur;
         return this;
     }
 

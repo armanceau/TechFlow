@@ -1,7 +1,6 @@
 package com.techflow.techflow.service;
 
-import com.techflow.techflow.dto.intervention.CreateIntervention;
-import com.techflow.techflow.dto.intervention.UpdateIntervention;
+import com.techflow.techflow.dto.InterventionDto;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.repository.InterventionRepository;
@@ -32,24 +31,23 @@ public class InterventionService {
         return interventionRepository.findOneByUuid(uuid).orElse(null);
     }
 
-    public Intervention create(CreateIntervention createIntervention) {
-        Utilisateur utilisateur = utilisateurRepository.findById(createIntervention.getUtilisateurId())
+    public Intervention create(InterventionDto interventionDto) {
+        Utilisateur utilisateur = utilisateurRepository.findById(interventionDto.getUtilisateurId())
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
         Intervention intervention = new Intervention(
-                createIntervention.getDescription(),
-                createIntervention.getTypeIntervention(),
-                createIntervention.getDate(),
-                createIntervention.getDuree(),
-                createIntervention.getStatutIntervention(),
+                interventionDto.getDescription(),
+                interventionDto.getTypeIntervention(),
+                interventionDto.getDate(),
+                interventionDto.getDuree(),
+                interventionDto.getStatutIntervention(),
                 utilisateur,
-                createIntervention.getPrioriteIntervention(),
-                createIntervention.getCout()
+                interventionDto.getPrioriteIntervention(),
+                interventionDto.getCout()
         );
 
         return interventionRepository.save(intervention);
     }
-
 
     public boolean delete(String interventionUuid) {
         Optional<Intervention> intervention = interventionRepository.findOneByUuid(interventionUuid);
@@ -61,22 +59,22 @@ public class InterventionService {
     }
 
     @Transactional
-    public boolean update(String uuid, UpdateIntervention updateIntervention) {
+    public boolean update(String uuid, InterventionDto interventionDto) {
         Optional<Intervention> optionalIntervention = interventionRepository.findOneByUuid(uuid);
         if (optionalIntervention.isPresent()) {
             Intervention intervention = optionalIntervention.get();
 
-            Utilisateur utilisateur = utilisateurRepository.findById(updateIntervention.getUtilisateurAssigne().getId())
+            Utilisateur utilisateur = utilisateurRepository.findById(interventionDto.getUtilisateurId())
                     .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
-            intervention.setDescription(updateIntervention.getDescription());
-            intervention.setTypeIntervention(updateIntervention.getTypeIntervention());
-            intervention.setDate(updateIntervention.getDate());
-            intervention.setDuree(updateIntervention.getDuree());
-            intervention.setStatutIntervention(updateIntervention.getStatutIntervention());
+            intervention.setDescription(interventionDto.getDescription());
+            intervention.setTypeIntervention(interventionDto.getTypeIntervention());
+            intervention.setDate(interventionDto.getDate());
+            intervention.setDuree(interventionDto.getDuree());
+            intervention.setStatutIntervention(interventionDto.getStatutIntervention());
             intervention.setUtilisateurAssigne(utilisateur);
-            intervention.setPriorite(updateIntervention.getPrioriteIntervention());
-            intervention.setCout(updateIntervention.getCout());
+            intervention.setPriorite(interventionDto.getPrioriteIntervention());
+            intervention.setCout(interventionDto.getCout());
 
             interventionRepository.save(intervention);
             return true;
@@ -85,36 +83,36 @@ public class InterventionService {
     }
 
     @Transactional
-    public boolean updatePartielle(String uuid, UpdateIntervention updateIntervention) {
+    public boolean updatePartielle(String uuid, InterventionDto interventionDto) {
         Optional<Intervention> optionalIntervention = interventionRepository.findOneByUuid(uuid);
         if (optionalIntervention.isPresent()) {
             Intervention intervention = optionalIntervention.get();
 
-            if (updateIntervention.getDescription() != null) {
-                intervention.setDescription(updateIntervention.getDescription());
+            if (interventionDto.getDescription() != null) {
+                intervention.setDescription(interventionDto.getDescription());
             }
-            if (updateIntervention.getTypeIntervention() != null) {
-                intervention.setTypeIntervention(updateIntervention.getTypeIntervention());
+            if (interventionDto.getTypeIntervention() != null) {
+                intervention.setTypeIntervention(interventionDto.getTypeIntervention());
             }
-            if (updateIntervention.getDate() != null) {
-                intervention.setDate(updateIntervention.getDate());
+            if (interventionDto.getDate() != null) {
+                intervention.setDate(interventionDto.getDate());
             }
-            if (updateIntervention.getDuree() != null) {
-                intervention.setDuree(updateIntervention.getDuree());
+            if (interventionDto.getDuree() != null) {
+                intervention.setDuree(interventionDto.getDuree());
             }
-            if (updateIntervention.getStatutIntervention() != null) {
-                intervention.setStatutIntervention(updateIntervention.getStatutIntervention());
+            if (interventionDto.getStatutIntervention() != null) {
+                intervention.setStatutIntervention(interventionDto.getStatutIntervention());
             }
-            if (updateIntervention.getUtilisateurAssigne() != null) {
-                Utilisateur utilisateur = utilisateurRepository.findById(updateIntervention.getUtilisateurAssigne().getId())
+            if (interventionDto.getUtilisateurId() != null) {
+                Utilisateur utilisateur = utilisateurRepository.findById(interventionDto.getUtilisateurId())
                         .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
                 intervention.setUtilisateurAssigne(utilisateur);
             }
-            if (updateIntervention.getPrioriteIntervention() != null) {
-                intervention.setPriorite(updateIntervention.getPrioriteIntervention());
+            if (interventionDto.getPrioriteIntervention() != null) {
+                intervention.setPriorite(interventionDto.getPrioriteIntervention());
             }
-            if (updateIntervention.getCout() != 0) {
-                intervention.setCout(updateIntervention.getCout());
+            if (interventionDto.getCout() != 0) {
+                intervention.setCout(interventionDto.getCout());
             }
 
             interventionRepository.save(intervention);

@@ -5,6 +5,8 @@ import com.techflow.techflow.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UtilisateurService {
 
@@ -17,5 +19,9 @@ public class UtilisateurService {
 
     public Utilisateur findById(String id) {
         return utilisateurRepository.findById(id).orElse(null);
+    }
+
+    public List<Utilisateur> findAll() {
+        return utilisateurRepository.findAll();
     }
 }

@@ -1,10 +1,9 @@
 package com.techflow.techflow.service;
 
 import com.techflow.techflow.constant.PrioriteIntervention;
-import com.techflow.techflow.constant.Role;
 import com.techflow.techflow.constant.StatutIntervention;
 import com.techflow.techflow.constant.TypeIntervention;
-import com.techflow.techflow.dto.intervention.CreateIntervention;
+import com.techflow.techflow.dto.InterventionDto;
 import com.techflow.techflow.model.Intervention;
 import com.techflow.techflow.model.Utilisateur;
 import com.techflow.techflow.repository.InterventionRepository;
@@ -18,10 +17,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.techflow.techflow.util.InterventionTestBuilder.uneIntervention;
+import static com.techflow.techflow.util.model.InterventionTestBuilder.uneIntervention;
+import static com.techflow.techflow.util.model.UtilisateurTestBuidler.unUtilisateur;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class InterventionServiceUTest {
@@ -37,10 +37,10 @@ class InterventionServiceUTest {
     @Test
     void test_creer_une_intervention() {
         // Arrange
-        Utilisateur utilisateur = new Utilisateur("Doe", "johndoe@exemple.fr", "p@ssword0", Role.USER);
+        Utilisateur utilisateur = unUtilisateur().build();
         when(utilisateurRepository.findById(utilisateur.getId())).thenReturn(Optional.of(utilisateur));
 
-        CreateIntervention createIntervention = new CreateIntervention(
+        InterventionDto interventionDto = new InterventionDto(
                 "description",
                 TypeIntervention.DIAGNOSTIC,
                 LocalDateTime.now(),
@@ -57,7 +57,7 @@ class InterventionServiceUTest {
         when(interventionRepository.save(any(Intervention.class))).thenReturn(intervention);
 
         // Act
-        Intervention interventionCree = interventionService.create(createIntervention);
+        Intervention interventionCree = interventionService.create(interventionDto);
 
         // Assert
         assertNotNull(interventionCree);
@@ -66,7 +66,7 @@ class InterventionServiceUTest {
 
     @Test
     void test_creer_une_intervention_avec_un_utilisateur_inexistant() {
-        CreateIntervention createIntervention = new CreateIntervention(
+        InterventionDto interventionDto = new InterventionDto(
                 "description",
                 TypeIntervention.DIAGNOSTIC,
                 LocalDateTime.now(),
@@ -77,6 +77,6 @@ class InterventionServiceUTest {
                 50.0f
         );
 
-        assertThrows(RuntimeException.class, () -> interventionService.create(createIntervention));
+        assertThrows(RuntimeException.class, () -> interventionService.create(interventionDto));
     }
 }
