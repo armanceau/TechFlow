@@ -4,6 +4,7 @@ import com.techflow.techflow.model.Utilisateur;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -11,4 +12,6 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Strin
     Optional<Utilisateur> findByEmail(String email);
 
     Optional<Utilisateur> findById(String id);
+
+    List<Utilisateur> findAll();
 }

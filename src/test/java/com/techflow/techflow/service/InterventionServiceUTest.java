@@ -1,7 +1,6 @@
 package com.techflow.techflow.service;
 
 import com.techflow.techflow.constant.PrioriteIntervention;
-import com.techflow.techflow.constant.Role;
 import com.techflow.techflow.constant.StatutIntervention;
 import com.techflow.techflow.constant.TypeIntervention;
 import com.techflow.techflow.dto.InterventionDto;
@@ -19,9 +18,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static com.techflow.techflow.util.InterventionTestBuilder.uneIntervention;
+import static com.techflow.techflow.util.UtilisateurTestBuidler.unUtilisateur;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class InterventionServiceUTest {
@@ -37,7 +37,7 @@ class InterventionServiceUTest {
     @Test
     void test_creer_une_intervention() {
         // Arrange
-        Utilisateur utilisateur = new Utilisateur("Doe", "johndoe@exemple.fr", "p@ssword0", Role.USER);
+        Utilisateur utilisateur = unUtilisateur().build();
         when(utilisateurRepository.findById(utilisateur.getId())).thenReturn(Optional.of(utilisateur));
 
         InterventionDto interventionDto = new InterventionDto(

@@ -2,6 +2,7 @@ package com.techflow.techflow.model;
 
 import com.techflow.techflow.constant.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,12 +27,15 @@ public class Utilisateur implements UserDetails {
     private String id;
 
     @Column(nullable = false)
+    @Size(min = 2, max = 30, message = "Le nom d'utilisateur doit comporter entre 2 et 30 caractères")
     private String nom;
 
-    //TODO ajouter prenom au constructeur et partout, ajouter les conditions min max ...
+    @Column(nullable = false)
+    @Size(min = 2, max = 30, message = "Le prénom d'utilisateur doit comporter entre 2 et 30 caractères")
+    private String prenom;
 
     @Column(nullable = false)
-    private String prenom;
+    private String username;
 
     @Column(unique = true, length = 100, nullable = false)
     private String email;
@@ -50,8 +54,10 @@ public class Utilisateur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Utilisateur(String nom, String email, String password, Role role) {
+    public Utilisateur(String nom, String prenom, String username, String email, String password, Role role) {
         this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -66,15 +72,6 @@ public class Utilisateur implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.name()));
         }
         return authorities;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override
